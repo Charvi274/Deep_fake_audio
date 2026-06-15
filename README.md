@@ -1,5 +1,7 @@
 # AuraVoice: AI Speech Authenticity Classification Engine
 
+**Live Demo**: [https://deepfakeaudio-tzjsommjhmki5mg6q47zyj.streamlit.app/](https://deepfakeaudio-tzjsommjhmki5mg6q47zyj.streamlit.app/)
+
 AuraVoice is a machine learning-based acoustic security system engineered to distinguish between **Genuine (Human)** and **Deepfake (AI-synthesized)** speech recordings. By utilizing Mel-Frequency Cepstral Coefficients (MFCCs) and a 2D Convolutional Neural Network (CNN), AuraVoice delivers robust verification scores to secure voice-authenticated applications.
 
 ---
