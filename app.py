@@ -9,7 +9,7 @@ from predict import predict_audio
 # Page Configuration
 st.set_page_config(
     page_title="AuraVoice - AI Speech Authenticator", 
-    page_icon="🎙️", 
+    page_icon=None, 
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -133,7 +133,7 @@ st.markdown("""
 # Main Banner Layout
 st.markdown("""
     <div class="banner-container">
-        <h1 class="banner-title">🎙️ AuraVoice</h1>
+        <h1 class="banner-title">AuraVoice</h1>
         <p class="banner-subtitle">Acoustic Authentication & Deepfake Detection Engine</p>
     </div>
 """, unsafe_allow_html=True)
@@ -144,7 +144,7 @@ st.markdown("Assess the authenticity of speech samples. Upload an audio recordin
 st.markdown("<div style='height: 2px; background: linear-gradient(90deg, #0891B2, #7C3AED); margin: 1.5rem 0;'></div>", unsafe_allow_html=True)
 
 # File Drag-and-Drop Area
-st.markdown("### 📎 Speech Sample Upload")
+st.markdown("### Speech Sample Upload")
 audio_file = st.file_uploader(
     "Upload wav, mp3, flac, or ogg file",
     type=['wav', 'flac', 'mp3', 'ogg'],
@@ -178,7 +178,7 @@ if audio_file is not None:
             ax.spines['right'].set_visible(False)
             fig.tight_layout()
             
-            st.markdown("#### 📈 Signal Waveform Representation")
+            st.markdown("#### Signal Waveform Representation")
             st.pyplot(fig)
             plt.close()
         except Exception as e:
@@ -198,7 +198,7 @@ if audio_file is not None:
                 try:
                     prediction, confidence = predict_audio(temp_audio_path, model_weights)
                     
-                    st.markdown("### 📊 Detection Analysis Report")
+                    st.markdown("### Detection Analysis Report")
                     
                     # Columns to show results
                     metric_col1, metric_col2 = st.columns(2)
@@ -213,14 +213,14 @@ if audio_file is not None:
                     if is_human:
                         st.markdown("""
                             <div class="status-card verified-pass">
-                                <h3>✅ Human Authentication Verified</h3>
+                                <h3>Human Authentication Verified</h3>
                                 <p>The vocal profiles, pitch variance, and harmonic resonances match authentic biological speech patterns.</p>
                             </div>
                         """, unsafe_allow_html=True)
                     else:
                         st.markdown("""
                             <div class="status-card verified-fail">
-                                <h3>⚠️ Synthetic Signal Detected</h3>
+                                <h3>Synthetic Signal Detected</h3>
                                 <p>Warning: Spectral matching indicates synthetic audio. The signal matches structures produced by deepfake speech generators.</p>
                             </div>
                         """, unsafe_allow_html=True)

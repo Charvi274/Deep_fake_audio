@@ -4,9 +4,9 @@ AuraVoice is a machine learning-based acoustic security system engineered to dis
 
 ---
 
-## 🌟 Engine Overview
+## Engine Overview
 
-*   **Acoustic Profiling**: Converts standard speech audio into a normalized $40 \times 150$ grid of MFCC feature maps.
+*   **Acoustic Profiling**: Converts standard speech audio into a normalized 40 x 150 grid of MFCC feature maps.
 *   **Convolutional Signal Parsing**: Employs Conv2D layers with pooling and dropout to extract spatial patterns from voice spectrograms.
 *   **Pre-trained Weights Integrated**: Ships with `deepfake_audio_model.pth` containing pre-trained weights for instant local validation and inference.
 *   **Visual Analysis Dashboard**: A clean, premium dark-themed Streamlit application providing real-time audio playback, waveform graphics, and security score meters.
@@ -14,7 +14,7 @@ AuraVoice is a machine learning-based acoustic security system engineered to dis
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 The project files are organized at the root directory to ensure compatibility with standard execution environments:
 
@@ -31,22 +31,17 @@ The project files are organized at the root directory to ensure compatibility wi
 
 ---
 
-## ⚙️ Methodology & Classifier Architecture
+## Methodology and Classifier Architecture
 
-```mermaid
-graph TD
-    A[Raw Speech Audio] --> B[16,000 Hz Resampling]
-    B --> C[Compute 40 MFCC Bands]
-    C --> D[Normalize Frame Width to 150]
-    D --> E[Input Tensor: 1 x 40 x 150]
-    E --> F[Conv2D 16 Filters + MaxPool2D]
-    F --> G[Conv2D 32 Filters + MaxPool2D]
-    G --> H[Conv2D 64 Filters + MaxPool2D]
-    H --> I[Flatten to 5760 dimensions]
-    I --> J[Fully Connected 128 + Dropout 0.5]
-    J --> K[Sigmoid Activation Layer]
-    K --> L[Output Score: Authentic vs Synthetic]
-```
+The system processes signals through the following pipeline:
+1. **Raw Speech Audio**: Audio files loaded in WAV, MP3, or FLAC.
+2. **16000 Hz Resampling**: Audio is resampled to a clean 16 kHz mono signal.
+3. **MFCC Feature Extraction**: 40 Mel-frequency cepstral coefficients are extracted.
+4. **Temporal Padding/Truncating**: Audio frames are padded/sliced to a fixed width of 150 frames.
+5. **Input Tensor Grid**: Feeds a 1x40x150 feature map into the 2D CNN classifier.
+6. **2D CNN Feature Extraction**: Convolutions map channels 1 -> 16 -> 32 -> 64 with max pooling.
+7. **Classification Head**: Flattened features route through a dense layer (128 units, 50% dropout) to a Sigmoid activation.
+
 
 ### 1. Acoustic Preprocessing
 *   **Resampling**: Standardizes all audio signals to **16 kHz** sample rate.
@@ -61,7 +56,7 @@ graph TD
 
 ---
 
-## 🚀 Installation & Launch Guide
+## Installation & Launch Guide
 
 ### System Prerequisites
 *   Python 3.9+
@@ -98,7 +93,7 @@ To run full training or cross-dataset validation:
 
 ---
 
-## 📊 Verification Metrics & Targets
+## Verification Metrics & Targets
 
 To pass authenticity certification, predictions on evaluation sets are monitored against the following parameters:
 
